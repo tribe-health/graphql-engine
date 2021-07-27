@@ -57,7 +57,7 @@ $(J.deriveToJSON hasuraJSON ''ConnPoolSettings)
 -- | Partial of Database.MySQL.Simple.ConnectInfo
 data ConnSourceConfig
   = ConnSourceConfig
-    { _cscHost         :: !Text -- ^ Works with @127.0.0.1@ but not with @localhost@ for some reason
+    { _cscHost         :: !Text -- ^ Works with @127.0.0.1@ but not with @localhost@: https://mariadb.com/kb/en/troubleshooting-connection-issues/#localhost-and
     , _cscPort         :: !Word16
     , _cscUser         :: !Text
     , _cscPassword     :: !Text
@@ -99,6 +99,9 @@ instance Arbitrary TableName where
   arbitrary = genericArbitrary
 instance ToTxt TableName where
   toTxt TableName{..} = name
+
+
+type FunctionName = Text
 
 
 data FieldName

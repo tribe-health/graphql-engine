@@ -44,14 +44,22 @@ Hasura GraphQL engine supports:
 
 - :ref:`Postgres <database_postgres>`
 - :ref:`MS SQL Server <database_ms_sql_server>`
+- :ref:`Citus - Hyperscale <database_citus-hyperscale-postgres>`
+- :ref:`BigQuery <database_bigquery>`
 - **MySQL** (in preview) - See the :ref:`preview guide <mysql_preview>`
+
+.. admonition:: Additional Resources
+
+  Get Started with Hasura today - `Watch video guide <https://hasura.io/events/webinar/get-started-with-hasura/?pg=docs&plcmt=body&cta=getting-started&tech=>`__.
+
+  Have additional questions? - `Contact us <https://hasura.io/contact-us/?pg=docs&plcmt=body&cta=getting-started&tech=>`__.
 
 .. toctree::
    :maxdepth: 2
    :titlesonly:
    :hidden:
 
-   Hasura Cloud quickstart <https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html>
-   Docker quickstart <docker-simple>
+   Quickstart with Hasura Cloud <https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html>
+   Quickstart with Hasura using Docker <docker-simple>
    Making your first GraphQL query <first-graphql-query>
 

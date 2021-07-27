@@ -32,7 +32,7 @@ class (Backend b) => BackendMetadata (b :: BackendType) where
     -> TableName b
     -> ComputedFieldName
     -> ComputedFieldDefinition b
-    -> RawFunctionInfo -- TODO: Parameterize this too
+    -> RawFunctionInfo b
     -> Maybe Text
     -> m (ComputedFieldInfo b)
 
@@ -47,9 +47,10 @@ class (Backend b) => BackendMetadata (b :: BackendType) where
   -- | Function that resolves the connection related source configuration, and
   -- creates a connection pool (and other related parameters) in the process
   resolveSourceConfig
-    :: (MonadIO m, MonadBaseControl IO m, MonadResolveSource m)
+    :: (MonadIO m, MonadResolveSource m)
     => SourceName
     -> SourceConnConfiguration b
+    -> Env.Environment
     -> m (Either QErr (SourceConfig b))
 
   -- | Function that introspects a database for tables, columns, functions etc.
@@ -92,7 +93,7 @@ class (Backend b) => BackendMetadata (b :: BackendType) where
     -> SystemDefined
     -> FunctionConfig
     -> [FunctionPermissionMetadata]
-    -> RawFunctionInfo
+    -> RawFunctionInfo b
     -> m (FunctionInfo b, SchemaDependency)
 
   updateColumnInEventTrigger

@@ -3,9 +3,22 @@
 ## Next release
 (Add entries below in the order of server, console, cli, docs, others)
 
+- server: Fixed a bug where MSSQL and BigQuery would ignore environment variables set from the console
+- server: Fixing bug in ReplaceMetadata parser - Moving from Alternative to committed-choice.
+- server: Relax the unique operation name constraint when adding a query to a query collection
+- server/bigquery: Fix issues related to adding and querying from non-US datasets (closes [6937](https://github.com/hasura/graphql-engine/issues/6937)).
+- console: add pagination on the Raw SQL results page
+- console: fix issues with replacing invalid graphql identifiers in table and column names
+- console: show error message on inconsistent objects table
+
+
+## v2.0.3
+(Add entries below in the order of server, console, cli, docs, others)
+
 - server: inherited role improvements for select queries
     - an inherited role can now inherit from other inherited roles as well
     - explicit permissions for inherited roles can now be set which will override the inherited permission (if any)
+- server: fix optional global_select_limit config for BigQuery
 - console: support `global_select_limit` for bigquery sources
 - cli: add `-o`/`--output` flag for `hasura metadata inconsistency list` command
 
@@ -26,6 +39,8 @@
 - console: add `reload all databases` checkbox to the metadata settings page
 - console: add schema sharing
 - console: fix issue with changing table's column name and graphQL field name simultaneously
+- console: fix adding/removing/updating database not getting added to `metadata/databases.yaml` in CLI mode
+- console: fix migrations being generated for allowed queries and inherited roles and in CLI mode
 - cli: add linux and darwin arm64 support
 
 ## v2.0.1

@@ -120,9 +120,6 @@ data StringifyNumbers
   | LeaveNumbersAlone
   deriving (Eq)
 
-defaultGlobalSelectLimit :: Int
-defaultGlobalSelectLimit = 1000
-
 --------------------------------------------------------------------------------
 -- Runners
 
@@ -134,7 +131,7 @@ runFromIr config fromIr =
 
 bigQuerySourceConfigToFromIrConfig :: BigQuerySourceConfig -> FromIrConfig
 bigQuerySourceConfigToFromIrConfig BigQuerySourceConfig {_scGlobalSelectLimit} =
-  FromIrConfig {globalSelectLimit = Top $ fromMaybe defaultGlobalSelectLimit _scGlobalSelectLimit}
+  FromIrConfig {globalSelectLimit = Top _scGlobalSelectLimit}
 
 --------------------------------------------------------------------------------
 -- Similar rendition of old API
@@ -794,17 +791,6 @@ fromAnnFieldsG existingJoins stringifyNumbers (Rql.FieldName name, field) =
         (\aliasedThing ->
            JoinFieldSource (Aliased {aliasedThing, aliasedAlias = name}))
         (fromArraySelectG arraySelectG)
-    -- this will be gone once the code which collects remote joins from the IR
-    -- emits a modified IR where remote relationships can't be reached
-    Ir.AFRemote _ ->
-      pure
-        (ExpressionFieldSource
-           Aliased
-             { aliasedThing = BigQuery.ValueExpression (StringValue "null: remote field selected")
-             , aliasedAlias = name
-             })
-    -- TODO: implement this
-    Ir.AFDBRemote _ -> error "FIXME"
 
 
 -- | Here is where we project a field as a column expression. If
