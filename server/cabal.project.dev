@@ -8,6 +8,8 @@
 
 with-compiler: ghc
 
+extra-lib-dirs: /usr/local/opt/openssl@1.1/lib
+
 package *
   documentation: true
 

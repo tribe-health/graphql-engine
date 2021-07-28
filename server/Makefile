@@ -3,7 +3,7 @@ SHELL := /bin/bash
 VERSION ?= $(shell ../scripts/get-version.sh)
 export VERSION
 
-registry := hasura
+registry := gqadonis
 # This packager version is built using the packeger.df in the packaging folder:
 # docker build -t "hasura/graphql-engine-packager:20210218" -f packager.df .
 packager_ver := 20210218
